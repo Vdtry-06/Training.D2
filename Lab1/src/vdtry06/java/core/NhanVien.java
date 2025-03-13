@@ -1,17 +1,17 @@
 package vdtry06.java.core;
 
 public class NhanVien extends CanBo {
-	private String work;
-	public NhanVien(String name, int age, String gender, String address, String work) {
+	private String job;
+	public NhanVien(String name, Integer age, String gender, String address, String job) {
 		super(name, age, gender, address);
-		this.work = work;
+		this.job = job;
 	}
 	
-	public String getWork() {
-		return work;
+	public String getJob() {
+		return job;
 	}
 	
-	public void setWork(String work) {
-		this.work = work;
+	public void setJob(String job) {
+		this.job = job;
 	}
 }
