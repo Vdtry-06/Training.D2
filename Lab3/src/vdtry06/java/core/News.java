@@ -15,13 +15,12 @@ public class News implements INews{
 	public News() {
 	}
 	
-	public News(String title, String publicDate, String author, String content, float averageRate) {
+	public News(String title, String publicDate, String author, String content) {
 		this.id = cnt++;
 		this.title = title;
 		this.publicDate = publicDate;
 		this.author = author;
 		this.content = content;
-		this.averageRate = averageRate;
 	}
 	
 	public int getId() {
@@ -61,13 +60,13 @@ public class News implements INews{
 
 	@Override
 	public void Display() {
-//		System.out.println("Id: "+ id);
-//		System.out.println("Title: " + title);
-//		System.out.println("PublicDate: " + publicDate);
-//		System.out.println("Author: " + author);
-//		System.out.println("Content: " + content);
-//		System.out.println("AverageRate: " + averageRate);
-		System.out.println(id + " " + title + " " + publicDate + " " + author + " " + content + " " + averageRate);
+		System.out.println("Id: "+ id);
+		System.out.println("Tiêu đề: " + title);
+		System.out.println("Ngày xuất bản: " + publicDate);
+		System.out.println("Tác giả: " + author);
+		System.out.println("Nội dung: " + content);
+		System.out.printf("Điểm trung bình: %.2f\n", averageRate);
+		System.out.println("-------------------------------------");
 	}
 
 	@Override
@@ -76,7 +75,9 @@ public class News implements INews{
 		for(int num: rates) {
 			sum += num;
 		}
-		averageRate = sum / rates.size();
+		if (!rates.isEmpty()) {
+            averageRate = sum / rates.size();
+        }
 		return averageRate;
 	}
 

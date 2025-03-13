@@ -4,91 +4,107 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MyNews {
-	public static ArrayList<News> list = new ArrayList<News>();  
-	public static News new1 = new News();
-	
-	public static void main(String[] args) {
-		menu();
-	}
-	
-	public static void menu() {
-		Scanner sc = new Scanner(System.in);
-		while(true) {
-			System.out.println("Chon 1, 2, 3, 4 De thuc hien thao tac voi nguoi dung:");
-			System.out.println("1. Tao doi tuong class News");
-			System.out.println("2. Thuc thi phuong thuc Display()");
-			System.out.println("3. Thuc hien phuong thuc Calculate de tinh gia tri trung binh");
-			System.out.println("   Sau do thuc thi phuong thuc Display()");
-			System.out.println("4. Thoat khoi chuong trinh.");
-			
-			String choose = sc.nextLine();
-			if(choose.equals("1")) {
-				System.out.println("Nhap Title:");
-				String title = sc.nextLine();
-				System.out.println("Nhap PublicDate:");
-				String publicDate = sc.nextLine();
-				System.out.println("Nhap Author:");
-				String author = sc.nextLine();
-				System.out.println("Nhap Content:");
-				String content = sc.nextLine();
-				System.out.println("Nhap 3 so nguyen de luu vao Rates");
-				int num1 = Integer.parseInt(sc.nextLine());
-				int num2 = Integer.parseInt(sc.nextLine());
-				int num3 = Integer.parseInt(sc.nextLine());
-				insertNews(title, publicDate, author, content, num1, num2, num3);
-			}
-			else if(choose.equals("2")) {
-				viewListNews();
-				for(News lst : list) {
-					System.out.println(lst);
-				}
-			}
-			else if(choose.equals("3")) {
-				averageRate();
-				for(News lst : list) {
-					System.out.println(lst);
-				}
-			}
-			else if(choose.equals("4")) {
-				Exit();
-			}
-			else System.out.println("Nhap sai ki tu tu ban phim \n Vui long nhap dung ki tu de thuc hien cac thao tac");
-			
-			System.out.println();
-		}
-	}
-	public static void insertNews(
-			String title, 
-			String publicDate, 
-			String author, 
-			String content, 
-			int num1, 
-			int num2, 
-			int num3
-			) {
-		new1.setTitle(title);
-		new1.setPublicDate(publicDate);
-		new1.setAuthor(author);
-		new1.setContent(content);
-		new1.rates.add(num1);
-		new1.rates.add(num2);
-		new1.rates.add(num3);
-		list.add(new1);
-	}
-	
-	public static void viewListNews() {
-		new1.Display();
-		list.add(new1);
-	}
-	
-	public static void averageRate() {
-		new1.Calculate();
-		new1.Display();
-		list.add(new1);
-	}
-	
-	public static void Exit() {
-		System.out.println("Thoat khoi chuong trinh");
-		System.exit(0);
-	}
+    public static ArrayList<News> list = new ArrayList<>();
+    public static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        menu();
+    }
+
+    public static void menu() {
+        while (true) {
+        	System.out.println("\n=====================================");
+            System.out.println("=   CHƯƠNG TRÌNH QUẢN LÝ TIN TỨC    =");
+            System.out.println("=====================================");
+            System.out.println("1️. Tạo bài báo mới");
+            System.out.println("2️. Hiển thị danh sách bài báo");
+            System.out.println("3️. Tính và hiển thị trung bình đánh giá");
+            System.out.println("4️. Thoát chương trình");
+            System.out.println("-------------------------------------");
+            System.out.print("Chọn thao tác: ");
+
+            String choose = sc.nextLine();
+            switch (choose) {
+                case "1":
+                    createNews();
+                    break;
+                case "2":
+                    viewListNews();
+                    break;
+                case "3":
+                	averageRate();
+                    break;
+                case "4":
+                    exitProgram();
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ, vui lòng nhập lại!");
+            }
+        }
+    }
+
+    public static void createNews() {
+        System.out.println("\nNHẬP THÔNG TIN BÀI BÁO MỚI:");
+        System.out.print("Tiêu đề: ");
+        String title = sc.nextLine();
+        System.out.print("Ngày xuất bản: ");
+        String publicDate = sc.nextLine();
+        System.out.print("Tác giả: ");
+        String author = sc.nextLine();
+        System.out.print("Nội dung: ");
+        String content = sc.nextLine();
+
+        News news = new News(title, publicDate, author, content);
+
+        System.out.println("Nhập 3 đánh giá (1 - 10):");
+        for (int i = 0; i < 3; i++) {
+            int rate;
+            while (true) {
+                System.out.print("Đánh giá " + (i + 1) + ": ");
+                try {
+                    rate = Integer.parseInt(sc.nextLine());
+                    if (rate < 1 || rate > 10) {
+                        System.out.println("Điểm phải từ 1 đến 10! Hãy nhập lại.");
+                    } else {
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Hãy nhập một số nguyên hợp lệ!");
+                }
+            }
+            news.rates.add(rate);
+        }
+        
+
+        list.add(news);
+        System.out.println("Bài báo đã được thêm thành công!\n");
+    }
+
+    public static void viewListNews() {
+        if (list.isEmpty()) {
+            System.out.println("Không có bài báo nào trong danh sách.");
+            return;
+        }
+        System.out.println("\nDANH SÁCH BÀI BÁO:");
+        System.out.println("=====================================");
+        for (News news : list) {
+            news.Display();
+        }
+    }
+
+    public static void averageRate() {
+        if (list.isEmpty()) {
+            System.out.println("Không có bài báo nào trong danh sách.");
+            return;
+        }
+        for (News news : list) {
+            news.Calculate();
+            news.Display();
+        }
+    }
+
+    public static void exitProgram() {
+        System.out.println("Cảm ơn bạn đã sử dụng chương trình!");
+        System.exit(0);
+    }
 }
