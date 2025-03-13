@@ -3,54 +3,79 @@ package vdtry06.java.core;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args) {
-		
-		Scanner sc = new Scanner(System.in);
-		VietnamesePhone vienamesePhone = new VietnamesePhone();
-		while(true) {
-			System.out.println("Chon 1, 2, 3, 4, 5, 6 De thuc hien thao tac voi nguoi dung:");
-			System.out.println("1. Them thong tin lien lac cho nguoi dung");
-			System.out.println("2. Xoa thong tin lien lac cua nguoi dung");
-			System.out.println("3. Cap nhat thong tin lien lac cua nguoi dung");
-			System.out.println("4. Tim kiem thong tin lien lac cua nguoi dung");
-			System.out.println("5. Hien thi thong tin lien lac cua tat ca nguoi dung");
-			System.out.println("6. Thoat khoi chuong trinh.");
-			String choose = sc.nextLine().trim();
-			
-			if(choose.equals("1")) {
-				System.out.println("Them thong tin lien lac cho nguoi dung: ");
-				String name = sc.nextLine();
-				String phone = sc.nextLine();
-				vienamesePhone.insertContact(name, phone);
-				
-			} else if (choose.equals("2")) {
-				System.out.println("Xoa thong tin lien lac cua nguoi dung");
-				String name = sc.nextLine();
-				vienamesePhone.removeContact(name);
-				
-			} else if (choose.equals("3")) {
-				System.out.println("Cap nhat thong tin lien lac cua nguoi dung");
-				String name = sc.nextLine();
-				String newPhone = sc.nextLine();
-				vienamesePhone.updateContact(name, newPhone);
-				
-			} else if (choose.equals("4")) {
-				System.out.println("Tim kiem thong tin lien lac cua nguoi dung");
-				String name = sc.nextLine();
-				vienamesePhone.searchContact(name);
-				
-			} else if (choose.equals("5")){
-				System.out.println("Hien thi thong tin lien lac cua tat ca nguoi dung: ");
-				vienamesePhone.listContacts();
-			} else if(choose.equals("6")) {
-				System.out.println("Thoat khoi chuong trinh.");
-				System.exit(0);
-				
-			} else {
-				System.out.println("Ki tu nhap vao khong hop le, vui long thu lai!");
-			}
-			
-			System.out.println();
-		}
-	}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        VietnamesePhone vienamesePhone = new VietnamesePhone();
+
+        while (true) {
+            System.out.println("\n================ MENU QUẢN LÝ LIÊN LẠC ================");
+            System.out.println("1️. Thêm thông tin liên lạc");
+            System.out.println("2️. Xóa thông tin liên lạc");
+            System.out.println("3️. Cập nhật số điện thoại");
+            System.out.println("4️. Tìm kiếm liên lạc");
+            System.out.println("5️. Hiển thị danh bạ");
+            System.out.println("6️. Thoát chương trình");
+            System.out.println("=====================================================");
+            System.out.print("Chọn chức năng (1-6): ");
+            
+            String choose = sc.nextLine().trim();
+            System.out.println("-----------------------------------------------------");
+
+            switch (choose) {
+                case "1":
+                    System.out.println("Nhập thông tin liên lạc mới:");
+                    System.out.print("Nhập tên: ");
+                    String name = sc.nextLine().trim();
+                    if(name.isEmpty()) {
+                    	System.out.println("Tên không được bỏ trống!\nVui lòng chọn lại thao tác");
+                    	break;
+                    }
+                    System.out.print("Nhập số điện thoại: ");
+                    String phone = sc.nextLine().trim();
+                    if(phone.isEmpty()) {
+                    	System.out.println("SĐT không được bỏ trống!\nVui lòng chọn lại thao tác");
+                    	break;
+                    }
+                    vienamesePhone.insertContact(name, phone);
+                    break;
+
+                case "2":
+                    System.out.print("Nhập tên người dùng cần xóa: ");
+                    String removeName = sc.nextLine().trim();
+                    vienamesePhone.removeContact(removeName);
+                    break;
+
+                case "3":
+                    System.out.print("Nhập tên cần cập nhật: ");
+                    String updateName = sc.nextLine().trim();
+                    System.out.print("Nhập số điện thoại mới: ");
+                    String newPhone = sc.nextLine().trim();
+                    if(newPhone.isEmpty()) {
+                    	System.out.println("SĐT không được bỏ trống!\nVui lòng chọn lại thao tác");
+                    	break;
+                    }
+                    vienamesePhone.updateContact(updateName, newPhone);
+                    break;
+
+                case "4":
+                    System.out.print("Nhập tên cần tìm kiếm: ");
+                    String searchName = sc.nextLine().trim();
+                    vienamesePhone.searchContact(searchName);
+                    break;
+
+                case "5":
+                    System.out.println("Danh bạ hiện tại:");
+                    vienamesePhone.listAllContacts();
+                    break;
+
+                case "6":
+                    System.out.println("Cảm ơn đã sử dụng chương trình.!");
+                    System.exit(0);
+                    break;
+
+                default:
+                    System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập số từ 1 đến 6.");
+            }
+        }
+    }
 }

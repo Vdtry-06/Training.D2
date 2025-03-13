@@ -1,6 +1,5 @@
 package vdtry06.java.core;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,26 +16,24 @@ public class VietnamesePhone extends Phone{
 			contact.setName(name);
 			contact.setNumber(phone);
 			contacts.add(contact);
+			System.out.println("Đã cập nhật số điện thoại!");
 		}
 		
 	}
 
 	@Override
 	public void removeContact(String name) {
-		if(!validName(name)) {
-			System.out.println("Loi nhap ten nguoi dung");
+		Contact removeUser = null;
+		for(Contact contact : contacts) {
+			if(contact.getName().equalsIgnoreCase(name)) {
+				removeUser = contact;
+			}
+		}
+		if(removeUser != null) {
+			contacts.remove(removeUser);
+			System.out.println("Đã xóa thông tin liên lạc");
 		} else {
-			Contact removeUser = null;
-			for(Contact contact : contacts) {
-				if(contact.getName().equals(name)) {
-					removeUser = contact;
-				}
-			}
-			if(removeUser != null) {
-				contacts.remove(removeUser);
-			} else {
-				System.out.println("Khong tim thay ten lien lac de xoa");
-			}
+			System.out.println("Khong tim thay ten lien lac de xoa");
 		}
 	}
 
@@ -60,6 +57,7 @@ public class VietnamesePhone extends Phone{
 			}
 			if(check) {
 				contacts.set(index, contact);
+				System.out.println("Đã thêm liên lạc thành công!");
 			}
 			else {
 				System.out.println("Khong tim thay ten lien lac de cap nhat");
@@ -69,22 +67,19 @@ public class VietnamesePhone extends Phone{
 
 	@Override
 	public void searchContact(String name) {
-		if(!validName(name)) {
-			System.out.println("Loi nhap ten nguoi dung");
-		} else {
-			boolean check = false;
-			for(Contact contact : contacts) {
-				if(contact.getName().equals(name)) {
-					System.out.println(contact.toString());
-					check = true;
-				}
+		boolean check = false;
+		String lowerName = name.toLowerCase();
+		for(Contact contact : contacts) {
+			if(contact.getName().toLowerCase().contains(lowerName)) {
+				System.out.println(contact.toString());
+				check = true;
 			}
-			if(!check) System.out.print("Khong tim thay ten lien lac");
 		}
+		if(!check) System.out.print("Khong tim thay ten lien lac");
 	}
 	
 	@Override
-	public void listContacts() {
+	public void listAllContacts() {
 		for(Contact contact: contacts) {
 			System.out.println(contact.toString());
 		}
