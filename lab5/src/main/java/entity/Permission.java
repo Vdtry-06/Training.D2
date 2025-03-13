@@ -23,38 +23,4 @@ public class Permission {
 	@ManyToMany(mappedBy = "permissions")
 	private List<Role> roles = new ArrayList<Role>();
 
-	public Permission(long permissionId, String permissionName, String description) {
-		this.permissionId = permissionId;
-		this.permissionName = permissionName;
-		this.description = description;
-	}
-	
-	public Permission() {
-		
-	}
-
-	public long getPermissionId() {
-		return permissionId;
-	}
-
-	public void setPermissionId(long permissionId) {
-		this.permissionId = permissionId;
-	}
-
-	public String getPermissionName() {
-		return permissionName;
-	}
-
-	public void setPermissionName(String permissionName) {
-		this.permissionName = permissionName;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 }

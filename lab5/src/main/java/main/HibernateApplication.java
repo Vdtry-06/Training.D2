@@ -19,7 +19,6 @@ public class HibernateApplication {
 		session.getTransaction().commit();
 		session.close();
 		
-		
 		HibernateUtil.end();
 	}
 }

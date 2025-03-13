@@ -11,6 +11,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 @Table(name = "roles")
@@ -32,41 +33,4 @@ public class Role {
 	    inverseJoinColumns = @JoinColumn(name = "permission_id")
 	)
 	private List<Permission> permissions = new ArrayList<>();
-
-	public Role(long roleId, String roleName, String description) {
-		this.roleId = roleId;
-		this.roleName = roleName;
-		this.description = description;
-	}
-	
-	public Role() {
-		
-	}
-
-	public long getRoleId() {
-		return roleId;
-	}
-
-	public void setRole_id(long role_id) {
-		this.roleId = roleId;
-	}
-
-	public String getRoleName() {
-		return roleName;
-	}
-
-	public void setRole_name(String role_name) {
-		this.roleName = roleName;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	
-	
 }

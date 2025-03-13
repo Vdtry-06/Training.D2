@@ -19,32 +19,4 @@ public class Position {
 	
 	@OneToMany(mappedBy = "position")
 	private List<Employee> employees;
-	
-	public Position(long positionId, String positionName) {
-		super();
-		this.positionId = positionId;
-		this.positionName = positionName;
-	}
-	
-	public Position() {
-		
-	}
-
-	public long getPositionId() {
-		return positionId;
-	}
-
-	public void setPositionId(long positionId) {
-		this.positionId = positionId;
-	}
-
-	public String getPositionName() {
-		return positionName;
-	}
-
-	public void setPositionName(String positionName) {
-		this.positionName = positionName;
-	}
-	
-	
 }

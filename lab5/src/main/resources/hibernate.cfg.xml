@@ -18,12 +18,12 @@
         <property name="hibernate.show_sql">true</property>
 
         <!-- Khai báo Entity -->
-        <mapping class="Entity.Department"/>
-        <mapping class="Entity.Employee"/>
-        <mapping class="Entity.Permission"/>
-        <mapping class="Entity.Position"/>
-        <mapping class="Entity.Role"/>
-        <mapping class="Entity.User"/>
+        <mapping class="entity.Department"/>
+        <mapping class="entity.Employee"/>
+        <mapping class="entity.Permission"/>
+        <mapping class="entity.Position"/>
+        <mapping class="entity.Role"/>
+        <mapping class="entity.User"/>
 
     </session-factory>
 </hibernate-configuration>
