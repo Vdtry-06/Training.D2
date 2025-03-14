@@ -53,7 +53,7 @@ public class UserManager {
 				stmt.setString(6, ((Employee) user).getProSkill());
 			}
 			stmt.executeUpdate();
-			System.out.println("Them nguoi dung thanh cong!");
+			System.out.println("Tạo tài khoản Admin thành công!");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
