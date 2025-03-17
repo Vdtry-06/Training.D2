@@ -1,0 +1,6 @@
+2025-03-17 11:09:40 [main] INFO  log4j.MainApplication - Starting MainApplication using Java 17.0.12 with PID 8808 (C:\Users\trong.vuongduc\Documents\workspace-spring-tool-suite-4-4.29.0.RELEASE\log4j\target\classes started by trong.vuongduc in C:\Users\trong.vuongduc\Documents\workspace-spring-tool-suite-4-4.29.0.RELEASE\log4j)
+2025-03-17 11:09:40 [main] INFO  log4j.MainApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-17 11:09:40 [main] INFO  log4j.MainApplication - Started MainApplication in 0.458 seconds (process running for 1.074)
+2025-03-17 11:09:40 [main] INFO  log4j.service.LogExampleService - INFO - Đây là log thông tin
+2025-03-17 11:09:40 [main] WARN  log4j.service.LogExampleService - WARNING - Đây là log cảnh báo
+2025-03-17 11:09:40 [main] ERROR log4j.service.LogExampleService - ERROR - Đây là log lỗi nghiêm trọng
